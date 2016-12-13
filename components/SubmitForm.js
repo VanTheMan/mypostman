@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import FormParams from './FormParams';
 const ipc = require('electron').ipcRenderer;
 
 class SubmitForm extends Component {
@@ -28,7 +29,7 @@ class SubmitForm extends Component {
     };
 
     handleChange(event){
-        
+        console.log(this.select.value);
     };
 
     render() {
@@ -47,6 +48,7 @@ class SubmitForm extends Component {
                         URL params
                     </button>
                 </div>
+                <FormParams />
                 <div className="form-actions">
                     <button type="submit" className="btn btn-form btn-primary" id="send-btn">Send</button>
                     <button type="reset" className="btn btn-form btn-negative">Reset</button>
