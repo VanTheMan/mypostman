@@ -22,11 +22,24 @@ function createWindow(){
 ipc.on('submit-form', function(event, arg){
     console.log('submit form from index.html');
     console.log(arg);
+    var options = {
+        hostname: arg.url,
+        method: arg.method
+    };
     if (arg.method == 'GET'){
         http.get(arg.url, function(res){
+            res.setEncoding('utf8');
+            let rawData = '';
             res.on('data', function(data){
-                console.log(JSON.parse(data));
-                event.sender.send('server-response', JSON.parse(data));
+                rawData += data;
+            });
+            res.on('end', function(){
+                try {
+                    let parsedData = JSON.parse(rawData);
+                    event.sender.send('server-response', parsedData);
+                } catch (err){
+                    console.log(err.message);
+                }
             });
         }).on('error', function(e){
             console.log(e);

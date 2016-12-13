@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import SubmitForm from './SubmitForm';
 import ResponsePreview from './ResponsePreview';
-const ipc = require('electron').ipcRenderer;
-
-var responseContent;
-ipc.on('server-response', function(event, arg){
-  console.log('receive server response');
-  responseContent = arg;
-});
 
 class App extends Component {
   render() {
@@ -20,7 +13,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <SubmitForm />
-        <ResponsePreview responseContent={responseContent} />
+        <ResponsePreview />
       </div>
     );
   }
