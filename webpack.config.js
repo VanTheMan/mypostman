@@ -14,6 +14,16 @@ module.exports = {
         query: {
           presets: ['react', 'es2015'] 
         }
+      },
+      {
+          test: /\.css$/,
+          loader: 'css-loader'
+      }, {
+          test: /\.(jpg|png|gif)$/,
+          loader: 'file-loader'
+      }, {
+          test: /\.(woff|woff2|eot|ttf|svg)$/,
+          loader: 'url-loader?limit=100000'
       }
     ]
   },

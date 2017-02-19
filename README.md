@@ -1,0 +1,5 @@
+- Install nodejs + npm 
+- git clone https://github.com/VanTheMan/mypostman
+- cd mypostman
+- npm install
+- npm start
