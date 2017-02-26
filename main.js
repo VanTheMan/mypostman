@@ -70,7 +70,18 @@ ipc.on('submit-form', function(event, arg){
             console.log(data);
             event.sender.send('server-response', data);
         });
-    }
+    } else if (arg.method == 'PUT'){
+        console.log(arg);
+        fetch(arg.url, {
+            method: arg.method,
+            body: JSON.stringify(arg.params)
+        }).then(checkStatus)
+        .then(parseJSON)
+        .then(function(data){
+            console.log(data);
+            event.sender.send('server-response', data);
+        });
+    } 
 });
 
 app.on('ready', createWindow);
