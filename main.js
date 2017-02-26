@@ -4,6 +4,7 @@ const path = require('path');
 const url = require('url');
 const ipc = require('electron').ipcMain;
 const http = require('http');
+const fetch = require('isomorphic-fetch');
 
 const BrowserWindow = electron.BrowserWindow;
 
@@ -18,6 +19,20 @@ function createWindow(){
         mainwindow = null;
     });
 }; 
+
+function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response
+  } else {
+    var error = new Error(response.statusText)
+    error.response = response
+    throw error
+  }
+}
+
+function parseJSON(response) {
+  return response.json()
+}
 
 ipc.on('submit-form', function(event, arg){
     console.log('submit form from index.html');
@@ -43,6 +58,17 @@ ipc.on('submit-form', function(event, arg){
             });
         }).on('error', function(e){
             console.log(e);
+        });
+    } else if (arg.method == 'POST'){
+        console.log(arg);
+        fetch(arg.url, {
+            method: arg.method,
+            body: JSON.stringify(arg.params)
+        }).then(checkStatus)
+        .then(parseJSON)
+        .then(function(data){
+            console.log(data);
+            event.sender.send('server-response', data);
         });
     }
 });

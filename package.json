@@ -17,6 +17,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "electron": "^1.4.10",
+    "es6-promise": "^4.0.5",
+    "isomorphic-fetch": "^2.2.1",
     "photon": "^2.0.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"

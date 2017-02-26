@@ -19,10 +19,10 @@ class SubmitForm extends Component {
         let _state = {
             url: this.input.value,
             method : this.select.value,
-            params: {}
+            params: this.formParams.value.replace(/\n/g, "")
         }
         console.log("Input value " + this.input.value);
-        console.log(this.state);
+        console.log(_state);
 
         ipc.send('submit-form', _state);
         event.preventDefault();
@@ -52,6 +52,9 @@ class SubmitForm extends Component {
                         <button className="btn btn-default">
                             URL params
                         </button>
+                    </div>
+                    <div className="col-sm-8">
+                        <textarea className="form-control" rows="5" ref={(textarea) => this.formParams = textarea}></textarea>
                     </div>
                 </div>
                 {/*<div className="form-group">

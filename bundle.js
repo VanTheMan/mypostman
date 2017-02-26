@@ -21349,10 +21349,10 @@
 	            var _state = {
 	                url: this.input.value,
 	                method: this.select.value,
-	                params: {}
+	                params: this.formParams.value.replace(/\n/g, "")
 	            };
 	            console.log("Input value " + this.input.value);
-	            console.log(this.state);
+	            console.log(_state);
 
 	            ipc.send('submit-form', _state);
 	            event.preventDefault();
@@ -21423,6 +21423,13 @@
 	                            { className: 'btn btn-default' },
 	                            'URL params'
 	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'col-sm-8' },
+	                        _react2.default.createElement('textarea', { className: 'form-control', rows: '5', ref: function ref(textarea) {
+	                                return _this2.formParams = textarea;
+	                            } })
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -21497,22 +21504,8 @@
 	                { className: 'FormParams' },
 	                _react2.default.createElement(
 	                    'div',
-	                    { className: 'col-sm-2' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'btn btn-default' },
-	                        'form-data'
-	                    ),
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'btn btn-default' },
-	                        'x-www-form-urlencoded'
-	                    ),
-	                    _react2.default.createElement(
-	                        'button',
-	                        { className: 'btn btn-default' },
-	                        'raw'
-	                    )
+	                    { className: 'col-sm-8' },
+	                    _react2.default.createElement('textarea', { 'class': 'form-control' })
 	                )
 	            );
 	        }

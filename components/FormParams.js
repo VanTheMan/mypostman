@@ -10,10 +10,8 @@ class FormParams extends Component {
     render() {
         return (
         <div className="FormParams">
-            <div className="col-sm-2">
-                <button className="btn btn-default">form-data</button>
-                <button className="btn btn-default">x-www-form-urlencoded</button>
-                <button className="btn btn-default">raw</button>
+            <div className="col-sm-8">
+                <textarea class="form-control"></textarea>
             </div>
             {/*<KeyValueInput />*/}
             {/*<KeyValueInput />*/}
