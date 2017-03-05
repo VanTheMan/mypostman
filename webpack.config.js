@@ -1,3 +1,6 @@
+var webpack = require('webpack')
+var path = require('path')
+
 module.exports = {
   entry: {
       main: './index.js'
@@ -27,5 +30,11 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+      new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery'
+      })  
+  ],  
   target: "electron"  
 }

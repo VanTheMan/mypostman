@@ -34,39 +34,42 @@ class SubmitForm extends Component {
 
     render() {
         return (
-            <form className="form-horizontal" onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                    <div className="col-sm-8">
-                        <input type="text" className="form-control" ref={(input) => this.input = input} placeholder="http://" />
+            <div className="SubmitForm">
+                <h4>REQUEST</h4>
+                <form className="form-horizontal" onSubmit={this.handleSubmit}>
+                    <div className="form-group">
+                        <div className="col-sm-8">
+                            <input type="text" className="form-control" ref={(input) => this.input = input} placeholder="http://" />
+                        </div>
+                        <div className="col-sm-2">
+                            <select className="form-control" onChange={this.handleChange} ref={(select) => this.select = select} >
+                                <option>GET</option>
+                                <option>POST</option>
+                                <option>PUT</option>
+                                <option>DELETE</option>
+                                <option>PATCH</option>
+                            </select>
+                        </div>
+                        <div className="col-sm-2">
+                            <button className="btn btn-default">
+                                URL params
+                            </button>
+                        </div>
+                        <div className="col-sm-8">
+                            <textarea className="form-control" rows="5" ref={(textarea) => this.formParams = textarea}></textarea>
+                        </div>
                     </div>
-                    <div className="col-sm-2">
-                        <select className="form-control" onChange={this.handleChange} ref={(select) => this.select = select} >
-                            <option>GET</option>
-                            <option>POST</option>
-                            <option>PUT</option>
-                            <option>DELETE</option>
-                            <option>PATCH</option>
-                        </select>
+                    {/*<div className="form-group">
+                        <FormParams />
+                    </div>*/}
+                    <div className="form-group">
+                        <div className="col-sm-offset-1 col-sm-2">
+                            <button type="submit" className="btn btn-primary" id="send-btn">Send</button>
+                            <button type="reset" className="btn btn-negative">Reset</button>
+                        </div>
                     </div>
-                    <div className="col-sm-2">
-                        <button className="btn btn-default">
-                            URL params
-                        </button>
-                    </div>
-                    <div className="col-sm-8">
-                        <textarea className="form-control" rows="5" ref={(textarea) => this.formParams = textarea}></textarea>
-                    </div>
-                </div>
-                {/*<div className="form-group">
-                    <FormParams />
-                </div>*/}
-                <div className="form-group">
-                    <div className="col-sm-offset-1 col-sm-8">
-                        <button type="submit" className="btn btn-primary" id="send-btn">Send</button>
-                        <button type="reset" className="btn btn-negative">Reset</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>   
         );
     };
 
